@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your $1,000 Amazon Voucher!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ff9900;
+        }
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 18px;
+            z-index: 1000;
+        }
+        .header .menu {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .menu-content {
+            display: none;
+            background-color: white;
+            padding: 10px;
+            position: absolute;
+            left: 0;
+            top: 50px;
+        }
+        .menu-content a {
+            color: black;
+            text-decoration: none;
+        }
+        .banner {
+            text-align: center;
+            padding: 100px 20px;
+            color: white;
+        }
+        .banner h1 {
+            font-size: 3em;
+            animation: bounce 1.5s infinite alternate;
+        }
+        .form-container {
+            margin-top: 50px;
+            text-align: center;
+            animation: pulse 1s infinite alternate;
+        }
+        .email-input {
+            padding: 10px;
+            font-size: 18px;
+            width: 300px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+        .email-input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+        .get-started-btn {
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #00c8ff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .get-started-btn:hover {
+            background-color: #0099cc;
+        }
+        .countdown {
+            color: white;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border-radius: 10px;
+        }
+        .popup.active {
+            display: block;
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="menu" onclick="toggleMenu()">☰ Menu</div>
+        <div class="menu-content">
+            <a href="https://go4affm.com/c/?p=40201&o=20854&subid=1234">Home</a><br>
+            <a href="https://go4affm.com/c/?p=40201&o=20854&subid=1234">About</a><br>
+            <a href="https://go4affm.com/c/?p=40201&o=20854&subid=1234">Contact</a>
+        </div>
+    </div>
+
+    <div class="banner">
+        <h1>Get Your $1,000 Amazon Voucher Today!</h1>
+        <p>Hurry! Limited Stock Available</p>
+        <div class="form-container">
+            <input type="email" id="email" class="email-input" placeholder="Enter your email" required>
+            <br><br>
+            <button class="get-started-btn" onclick="redirectUser()">Get Started</button>
+        </div>
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+    <div class="popup" id="popup">
+        <p>7238 people have already claimed this offer!</p>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu-content');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function redirectUser() {
+            const email = document.getElementById('email').value;
+            if (email) {
+                const affiliateLink = "https://go4affm.com/c/?p=40201&o=20854&subid=1234";
+                window.location.href = affiliateLink; // Redirect to affiliate link
+            } else {
+                alert('Please enter your email');
+            }
+        }
+
+        // Countdown Timer
+        function countdownTimer() {
+            const countdownDate = new Date().getTime() + 86400000; // 1 day from now
+            const countdown = document.getElementById("countdown");
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+                if (distance < 0) {
+                    clearInterval(timer);
+                    countdown.innerHTML = "Offer Expired!";
+                } else {
+                    const hours = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60)) / 1000);
+                    const seconds = Math.floor((distance % 1000) / 100);
+                    countdown.innerHTML = `Expires in: ${hours}h ${minutes}m ${seconds}s`;
+                }
+            }, 100);
+        }
+
+        // Show popup
+        setTimeout(function() {
+            document.getElementById("popup").classList.add("active");
+        }, 3000);
+
+        countdownTimer();
+    </script>
+
+</body>
+</html>
